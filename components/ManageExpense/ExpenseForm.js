@@ -23,7 +23,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   });
 
   function inputChangedHandler(inputIdentifier, enteredValue) {
-    // For amount, allow only numbers with up to 2 decimal places
+    
     if (inputIdentifier === 'amount') {
       enteredValue = enteredValue.replace(/[^0-9.]/g, '');
       const parts = enteredValue.split('.');
@@ -32,7 +32,6 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         enteredValue = parts[0] + '.' + parts[1].slice(0, 2);
     }
 
-    // For description, limit to 100 words
     if (inputIdentifier === 'description') {
       const words = enteredValue.trim().split(/\s+/);
       if (words.length > 100) enteredValue = words.slice(0, 100).join(' ');
@@ -51,18 +50,15 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
       description: inputs.description.value.trim(),
     };
 
-    // Amount validation: >0 and max 10 digits with 2 decimals
     const amountIsValid =
       !isNaN(expenseData.amount) &&
       expenseData.amount > 0 &&
       /^\d{1,10}(\.\d{1,2})?$/.test(inputs.amount.value);
 
-    // Date validation: YYYY-MM-DD
     const dateIsValid =
       /^\d{4}-\d{2}-\d{2}$/.test(inputs.date.value) &&
       !isNaN(expenseData.date.getTime());
 
-    // Description validation: max 100 words
     const descriptionIsValid =
       expenseData.description.split(/\s+/).length <= 100 &&
       expenseData.description.length > 0;
