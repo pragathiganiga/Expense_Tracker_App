@@ -8,7 +8,7 @@ function ExpenseItem({ id, description, amount, date }) {
 
   function expensePressHandler() {
     navigation.navigate('ManageExpense', {
-      expenseId: id, // Pass id so ManageExpense knows it’s an edit
+      expenseId: id, 
     });
   }
 
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderRadius: 6,
-    elevation: 3, // Android shadow
-    shadowColor: GlobalStyles.colors.gray500, // iOS shadow
+    elevation: 3, 
+    shadowColor: GlobalStyles.colors.gray500, 
     shadowRadius: 4,
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.4,
